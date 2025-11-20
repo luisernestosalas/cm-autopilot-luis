@@ -1,0 +1,55 @@
+'use client';
+import { useState } from 'react';
+
+export default function Home() {
+  const [loading, setLoading] = useState(false);
+
+  const generateContent = async () => {
+    setLoading(true);
+    // Aquí va la llamada a Gemini API (ver backend)
+    alert('¡Generando 30 días de contenido... Listo en 2 min! (Simulado)');
+    setLoading(false);
+  };
+
+  const activateResponses = () => {
+    alert('Respuestas 24/7 activadas. Conecta tus redes en Settings.');
+  };
+
+  const downloadReport = () => {
+    alert('Descargando reporte semanal... (PDF generado)');
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-black to-gray-900 text-white p-10">
+      <header className="text-center mb-8">
+        <h1 className="text-5xl font-bold mb-4">CM-Autopilot 2026</h1>
+        <p className="text-xl text-gray-300">Para Luis Ernesto – Personalizado</p>
+      </header>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <button 
+          onClick={generateContent} 
+          disabled={loading}
+          className="bg-purple-600 p-10 rounded-xl text-2xl hover:bg-purple-700 disabled:opacity-50"
+        >
+          {loading ? 'Generando...' : 'Generar 30 días de contenido'}
+        </button>
+        <button 
+          onClick={activateResponses} 
+          className="bg-green-600 p-10 rounded-xl text-2xl hover:bg-green-700"
+        >
+          Activar respuestas automáticas 24/7
+        </button>
+        <button 
+          onClick={downloadReport} 
+          className="bg-blue-600 p-10 rounded-xl text-2xl hover:bg-blue-700"
+        >
+          Descargar reporte semanal
+        </button>
+      </div>
+      <div className="mt-20 text-center text-gray-400">
+        <p>Tiempo ahorrado este mes: 138 horas</p>
+        <p>Logo y voz de marca: Configurados (morado/negro, español/inglés UK)</p>
+      </div>
+    </div>
+  );
+}
