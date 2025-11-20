@@ -1,0 +1,18 @@
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'tu-key-aqui');
+
+export async function generateContent(tema: string) {
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  const prompt = `Eres el Community Manager senior de [Tu Marca]. Voz: cercana, profesional y con humor sutil. 
+  Genera exactamente para ${tema}:
+  - 4 posts normales (máx 280 car) 
+  - 2 posts con pregunta abierta 
+  - 2 hilos de 8-12 tweets 
+  - 1 carrusel de 8 slides (títulos solamente) 
+  - 1 guion de Reel/TikTok de 15-25 seg con hook + valor + CTA
+  Todo en español peninsular + inglés UK. Incluye 5 hashtags relevantes y 3 emojis por post.`;
+
+  const result = await model.generateContent(prompt);
+  return result.response.text();
+}
